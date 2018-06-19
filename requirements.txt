@@ -1,3 +1,4 @@
 fhirclient
--e git+https://github.com/glow-mdsol/clinical_trials#egg=clinical_trials
-
+-e git+https://github.com/glow-mdsol/clinical_trials@develop#egg=clinical_trials
+requests
+PyLD
