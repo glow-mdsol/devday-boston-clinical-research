@@ -107,7 +107,7 @@ class FHIRAbstractBase(object):
         """
         if not isinstance(jsondict, dict):
             raise TypeError("Can only use `_with_json_dict()` on {} with a dictionary, got {}"
-                .format(type(self), type(jsondict)))
+                .format(cls.__name__, type(jsondict)))
         return cls(jsondict)
     
     @classmethod

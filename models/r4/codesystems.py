@@ -9,6 +9,8 @@
 
 from enum import Enum
 
+from models.r4 import codeableconcept, coding
+
 
 class CodeSystemValue(Enum):
     """
@@ -18,8 +20,10 @@ class CodeSystemValue(Enum):
     >>> _type = SampleCodeSystemValue('type')
     """
 
-    def as_json(self):
-        return dict(display=self.value, system=self.url, code=self.name)
+    def as_dict(self):
+        return dict(display=self.value,
+                    system=self.url,
+                    code=self.name)
 
     @property
     def text(self):
@@ -32,6 +36,11 @@ class CodeSystemValue(Enum):
     @property
     def experimental(self):
         return self.EXPERIMENTAL.value if hasattr(self, "EXPERIMENTAL") else False
+
+    @property
+    def codeable_concept(self):
+        return codeableconcept.CodeableConcept({'coding': [self.as_dict()],
+                                                'text': self.value})
 
 
 class ACMECodesForCholesterolInSerumPlasma(CodeSystemValue):
